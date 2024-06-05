@@ -18,6 +18,7 @@
 
 <h1>ADS</h1>
 
+
 @foreach($ads as $ad)
     <div class="ad" style="@if($ad->type == 'paid') border: 1px solid red; @endif">
         <img src="{{ $ad->image }}" alt="" width="150">
