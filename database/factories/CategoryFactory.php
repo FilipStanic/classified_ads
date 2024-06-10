@@ -17,7 +17,13 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => substr(fake()->word(), 0, 5)
+            'title' => $this->faker->word
         ];
+    }
+    public function title(string $title): self
+    {
+        return $this->state([
+            'title' => $title,
+        ]);
     }
 }

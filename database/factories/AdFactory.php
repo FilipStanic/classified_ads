@@ -20,11 +20,11 @@ class AdFactory extends Factory
         return [
             'title' => substr(fake()->word(), 0, -1),
             'content' => substr(fake()->paragraph(), 0, -1),
-            'price' => fake()->randomFloat(0, 100, 1000),
+            'price' => fake()->randomFloat(2, 50, 10000),
             'image' => fake()->imageUrl(),
             'type' => fake()->randomElement(['free', 'paid']),
             'status' => fake()->randomElement(['draft', 'active', 'expired', 'sold', 'private']),
-            'user_id' => rand(1, 20),
+            'user_id' => rand(1, 10),
             'category_id' => rand(1, 3)
 
         ];

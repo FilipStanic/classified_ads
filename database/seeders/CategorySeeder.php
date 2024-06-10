@@ -12,7 +12,16 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Category::factory(4)->create();
+        $titles = [
+            'Books',
+            'Movies',
+            'Music',
+            'Games'
+        ];
+
+        foreach ($titles as $title) {
+            \App\Models\Category::factory()->title($title)->create();
+        }
 
     }
 }
