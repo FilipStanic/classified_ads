@@ -13,7 +13,7 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ad::orderBy('price', 'desc')->get();
+        $ads = Ad::orderBy('created_at', 'desc')->get();
 
         return view('ads.index', compact('ads'));
     }
@@ -33,24 +33,30 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-//        $request->validate([
-//            'title' => 'required',
-//            'content' => 'required',
-//            'price' => 'required',
-//            'category_id' => 'required',
-//            'type' => 'required',
-//        ]);
 
-        Ad::create([
-            'title' => $request->title,
-            'content' => $request->input('content'),
-            'price' => $request->price,
-            'category_id' => $request->category_id,
-            'type' => $request->type,
-            'user_id' => 1,
+
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'type' => 'required',
         ]);
 
-//        Ad::create($request->all());
+        $image_path = $request->file('image')->store('images');
+
+
+        $image = $image_path ?? '';
+
+        $request->merge([
+            'user_id' => auth()->user()->id ?? 1
+        ]);
+
+
+        $ad = Ad::create($request->all());
+        $ad->image = $image;
+        $ad->save();
+
         return redirect()->route('ads.index');
     }
 
@@ -69,7 +75,11 @@ class AdsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $ad = Ad::find($id);
+        $categories = Category::all();
+
+        return view('ads.edit', compact('ad', 'categories'));
+
     }
 
     /**
@@ -77,7 +87,18 @@ class AdsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
+            'type' => 'required',
+        ]);
+
+        $ad = Ad::find($id);
+        $ad->update($request->all());
+
+        return redirect()->route('ads.index');
     }
 
     /**
@@ -85,6 +106,9 @@ class AdsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $ad = Ad::find($id);
+        $ad->delete();
+
+        return redirect()->route('ads.index');
     }
 }
