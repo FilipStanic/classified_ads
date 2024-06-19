@@ -24,7 +24,7 @@ class AdFactory extends Factory
             'image' => fake()->imageUrl(),
             'type' => fake()->randomElement(['free', 'paid']),
             'status' => fake()->randomElement(['draft', 'active', 'expired', 'sold', 'private']),
-            'user_id' => rand(1, 20),
+            'user_id' => rand(1, 10),
             'category_id' => rand(1, 3)
 
         ];
