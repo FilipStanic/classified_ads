@@ -41,21 +41,20 @@ class AdsController extends Controller
             'price' => 'required',
             'category_id' => 'required',
             'type' => 'required',
+            'image' => 'image',
         ]);
 
-        $image_path = $request->file('image')->store('images');
+        $image = $request->file('image');
+        $image_name = $image->hashName();
 
-
-        $image = $image_path ?? '';
+        $image->storeAs('public/images', $image_name);
 
         $request->merge([
-            'user_id' => auth()->user()->id ?? 1
+            'user_id' => auth()->user()->id ?? 1,
         ]);
 
-
         $ad = Ad::create($request->all());
-        $ad->image = $image;
-        $ad->save();
+        $ad->update(['image' => 'images/' . $image_name]);
 
         return redirect()->route('ads.index');
     }

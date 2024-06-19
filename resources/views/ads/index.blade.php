@@ -12,7 +12,7 @@
 
     @foreach($ads as $ad)
         <div class="ad" style="@if($ad->type == 'paid') border: 1px solid red @else border: 1px solid blue @endif">
-            <img src="{{ $ad->image }}" alt="" width="150">
+            <img src="{{ asset($ad->image) }}" alt="" width="150">
             <div style="display: flex">
                 <div style="margin-left: 20px; width: 90%">
                     <p>Category: {{ $ad->category->title }}</p>
