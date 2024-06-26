@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdCreated;
+use App\Notifications\AdCreated as NotificationsAdCreated;
 use App\Models\Ad;
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class AdsController extends Controller
 {
@@ -44,18 +49,25 @@ class AdsController extends Controller
             'image' => 'image',
         ]);
 
-        $image = $request->file('image');
-        $image_name = $image->hashName();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = $image->hashName();
 
-        $image->storeAs('public/images', $image_name);
+            $image->storeAs('public/images', $image_name);
+        }
 
         $request->merge([
             'user_id' => auth()->user()->id ?? 1,
         ]);
 
         $ad = Ad::create($request->all());
-        $ad->update(['image' => 'images/' . $image_name]);
 
+        if ($request->hasFile('image')) {
+            $ad->update(['image' => 'images/' . $image_name]);
+        }
+
+        Mail::to("vlada@vlada.com")->send(new AdCreated($ad));
+        Notification::send(User::find(1), new NotificationsAdCreated($ad));
         return redirect()->route('ads.index');
     }
 
