@@ -21,7 +21,11 @@
             font-size: xx-large;
         }
 
+<<<<<<< HEAD
         .category {
+=======
+        .ad {
+>>>>>>> origin/master
             display: flex;
             width: 500px;
             padding: 5px;

@@ -5,9 +5,13 @@
 @section('ads-content')
     <ul style="list-style-type: none; padding: 0; text-align: center;">
         <li><a href="/">Home</a></li>
+<<<<<<< HEAD
         <li><a href="/ads">Ads</a></li
         <li><a href="/categories">Categories</a></li>
 
+=======
+        <li><a href="/ads">Ads</a></li>
+>>>>>>> origin/master
     </ul>
 
     <a href="{{route('ads.index')}}"><- Back</a>

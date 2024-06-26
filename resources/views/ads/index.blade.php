@@ -6,15 +6,22 @@
     <ul style="list-style-type: none; padding: 0; text-align: center;">
         <li><a href="/">Home</a></li>
         <li><a href="/ads">Ads</a></li>
+<<<<<<< HEAD
         <li><a href="/categories">Categories</a></li>
 
+=======
+>>>>>>> origin/master
     </ul>
 
     <a href="{{route('ads.create')}}">Create Ad</a>
 
     @foreach($ads as $ad)
         <div class="ad" style="@if($ad->type == 'paid') border: 1px solid red @else border: 1px solid blue @endif">
+<<<<<<< HEAD
             <img src="{{ asset('storage/'.$ad->image) }}" alt="" width="150">
+=======
+            <img src="{{ asset($ad->image) }}" alt="" width="150">
+>>>>>>> origin/master
             <div style="display: flex">
                 <div style="margin-left: 20px; width: 90%">
                     <p>Category: {{ $ad->category->title }}</p>

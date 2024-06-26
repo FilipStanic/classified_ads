@@ -6,7 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+<<<<<<< HEAD
 })->name('welcome');
+=======
+});
+>>>>>>> origin/master
 
 //Route::get('/ads', [AdsController::class, 'index'])->name('ads.index');
 //Route::get('/ads/create', [AdsController::class, 'create'])->name('ads.create');
@@ -17,5 +21,8 @@ Route::get('/', function () {
 //Route::delete('/ads/{id}', [AdsController::class, 'destroy'])->name('ads.destroy');
 
 Route::resource('ads', AdsController::class);
+<<<<<<< HEAD
 Route::resource('categories', CategoryController::class);
+=======
+>>>>>>> origin/master
 
