@@ -23,10 +23,48 @@
 
         .category-div {
             display: flex;
-            width: 500px;
+            flex-direction: column;
+            align-items: center;
             padding: 5px;
             margin: 10px;
+        }
+
+        .category-div ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .category-div li {
             border: 1px solid black;
+            width: 50%;
+            margin: 5px 0;
+            padding: 10px;
+            text-align: center;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+
+        .input-div {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .input-div label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .input-div input {
+            width: 400px;
+            padding: 5px;
+            font-size: 16px;
         }
     </style>
 </head>

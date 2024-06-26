@@ -13,11 +13,17 @@
     <br>
     <a href="{{route('categories.create')}}">Create Category</a>
     <div class="category-div">
-        <ul class="categories-list">
+        <ul style="list-style-type: none;" class="categories-list">
+            <h1>Titles: </h1>
             @foreach($categories as $category)
                 <li>
                     <div class="category">
-                        <p>Title: {{ $category->title }}</p>
+                        <p>{{ $category->title }}</p>
+                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit">Delete</button>
+                        </form>
                     </div>
                 </li>
             @endforeach
