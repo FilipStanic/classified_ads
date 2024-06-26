@@ -21,15 +21,16 @@
             font-size: xx-large;
         }
 
-        .category {
+        .category-div {
             display: flex;
             width: 500px;
             padding: 5px;
             margin: 10px;
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
-    @yield('ads-content')
+@yield('categories-content')
 </body>
 </html>

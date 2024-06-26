@@ -33,6 +33,7 @@
     <ul style="list-style-type: none; padding: 0;">
         <li><a href="/">Home</a></li>
         <li><a href="/ads">Ads</a></li>
+        <li><a href="/categories">Categories</a></li>
     </ul>
 @endsection
 

@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         ]);
 
-        $this->call(CategorySeeder::class);
         $this->call(AdSeeder::class);
+        $this->call(CategorySeeder::class);
 
 
         \App\Models\User::factory(10)->create();
