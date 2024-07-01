@@ -39,8 +39,8 @@ class AdCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.ad-created',
-            with: ['ad' => $this->ad],
+            markdown: 'mail.md-ad-created',
+            with: ['ad' => $this->ad, 'url' => env('APP_URL'). "/ads/{$this->ad->id}"],
         );
     }
 

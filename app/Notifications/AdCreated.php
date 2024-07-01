@@ -38,6 +38,7 @@ class AdCreated extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+
             ->greeting('Hello!')
             ->line('An ad was created!')
             ->line('Title: '.  $this->ad->title)
