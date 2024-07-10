@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\AdCreated;
+use App\Events\AdCreated as AdCreatedEvent;
 use App\Notifications\AdCreated as NotificationsAdCreated;
 use App\Models\Ad;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -19,6 +21,8 @@ class AdsController extends Controller
     public function index()
     {
         $ads = Ad::orderBy('created_at', 'desc')->get();
+
+        return $ads;
 
         return view('ads.index', compact('ads'));
     }
@@ -66,8 +70,19 @@ class AdsController extends Controller
             $ad->update(['image' => 'images/' . $image_name]);
         }
 
-        Mail::to("vlada@vlada.com")->send(new AdCreated($ad));
-        Notification::send(User::find(1), new NotificationsAdCreated($ad));
+
+        $cars = ['mazda' => 'mazda', 'toyota' => 'toyota', 'honda' => 'honda'];
+        try {
+            Log::info('New ad created: ' . $cars);
+        } catch (\Exception $e) {
+            Log::error('Error: ' . $e->getMessage());
+        }
+
+        // Mail::to("vlada@vlada.com")->send(new AdCreated($ad));
+//        Notification::send(User::find(1), new NotificationsAdCreated($ad));
+//
+//        AdCreatedEvent::dispatch($ad);
+
         return redirect()->route('ads.index');
     }
 

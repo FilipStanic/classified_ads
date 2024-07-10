@@ -22,6 +22,8 @@
                     <p>{{ $ad->content }}</p>
                     <p>Author: {{ $ad->user->name }}</p>
                     <p>Price: <span style="font-weight: bold">{{ number_format($ad->price) }} Usd</span></p>
+                    <p>Price diff: <span style="font-weight: bold">{{ number_format($ad->diff) }} Usd</span></p>
+                    <p>Is expencive: <span style="font-weight: bold">{{ $ad->isExpensive ? "it is" : "it is not"  }}</span></p>
                 </div>
                 <div style="width: 20%">
                     <a href="/ads/{{$ad->id}}/edit">Edit</a>
