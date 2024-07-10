@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendWelcomeJob;
 use App\Mail\AdCreated;
 use App\Notifications\AdCreated as NotificationsAdCreated;
 use App\Models\Ad;
@@ -66,8 +67,7 @@ class AdsController extends Controller
             $ad->update(['image' => 'images/' . $image_name]);
         }
 
-        Mail::to("vlada@vlada.com")->send(new AdCreated($ad));
-        Notification::send(User::find(1), new NotificationsAdCreated($ad));
+        SendWelcomeJob::dispatch($ad);
         return redirect()->route('ads.index');
     }
 

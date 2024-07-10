@@ -41,7 +41,7 @@ class CustomEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Custom Email',
+            subject: 'Welcome',
         );
     }
 
