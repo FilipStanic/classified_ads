@@ -7,6 +7,9 @@ use App\Mail\CustomEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\CustomNotification;
+use App\Jobs\LogJob;
+use App\Events\LogEvent;
+
 
 class EmailController extends Controller
 {
@@ -23,5 +26,17 @@ class EmailController extends Controller
         $user->notify(new CustomNotification());
 
         return back()->with('success', 'Notification sent successfully!');
+    }
+
+    public function startJob()
+    {
+        LogJob::dispatch();
+        return back()->with('success', 'Job started successfully!');
+    }
+
+    public function startEvent()
+    {
+        event(new LogEvent());
+        return back()->with('success', 'Event started successfully!');
     }
 }

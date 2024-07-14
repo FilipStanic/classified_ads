@@ -20,6 +20,9 @@ Route::get('/', function () {
  Route::delete('/ads/{id}', [AdsController::class, 'destroy'])->name('ads.destroy');
  Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
  Route::get('/send-notification', [EmailController::class, 'sendNotification'])->name('send.notification');
+Route::get('/start-job', [EmailController::class, 'startJob'])->name('start.job');
+Route::get('/start-event', [EmailController::class, 'startEvent'])->name('start.event');
+
 
 
 Route::resource('ads', AdsController::class);

@@ -21,6 +21,8 @@
         h1 {
             font-family: "Open Sans", sans-serif;
             margin-bottom: 20px;
+            font-weight: bold;
+            font-size: xx-large;
         }
 
         a {
@@ -34,23 +36,23 @@
             background-color: #c3ffff;
             border-color: gray;
             border-radius: 10px;
+            margin-top: 10px;
         }
         button:hover {
             cursor: pointer;
         }
 
-        #notification {
-            margin-top: 10px;
-        }
-
     </style>
 
-    <h1>Welcome to the main page</h1>
-    <ul style="list-style-type: none; padding: 0;">
-        <li><a href="/">Home</a></li>
-        <li><a href="/ads">Ads</a></li>
-        <li><a href="/categories">Categories</a></li>
-    </ul>
+    <div>
+        <h1>Welcome to the main page</h1>
+        <ul style="list-style-type: none; padding: 0;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/ads">Ads</a></li>
+            <li><a href="/categories">Categories</a></li>
+        </ul>
+    </div>
+
 
     <form action="{{ route('send.email') }}" method="POST">
         @csrf
@@ -60,7 +62,18 @@
 
     <form action="{{ route('send.notification') }}" method="GET">
         @csrf
-        <button id="notification" type="submit">Send the notification to Admin</button>
+        <button type="submit">Send the notification to Admin</button>
+    </form>
+
+
+    <form action="{{ route('start.job') }}" method="GET">
+        @csrf
+        <button type="submit">Start Job</button>
+    </form>
+
+    <form action="{{ route('start.event') }}" method="GET">
+        @csrf
+        <button type="submit">Start Event</button>
     </form>
 
 @endsection
